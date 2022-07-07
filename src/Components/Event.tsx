@@ -28,7 +28,6 @@ const divEventStyle = (start: string, duration: number, calendarStartString: str
         border: "1px solid black",
         gridRowStart: `${startGridRow.minutes || 1}`,
         gridRowEnd: `${Math.min(maximumMinuteTime, (startGridRow.minutes || 1) + duration)}`,
-        overflow: "scroll"
     }
 }
 
