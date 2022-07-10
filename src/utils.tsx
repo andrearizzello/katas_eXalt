@@ -1,3 +1,5 @@
+import {CalendarEvent} from "./Container/Calendar";
+
 const {DateTime, Interval} = require("luxon");
 
 /**
@@ -36,3 +38,32 @@ export const dateSorter = (a: any, b: any) => {
  * @return {number} The random number
  */
 export const getRandomInInterval = (min: number, max: number) => (Math.random() * (max - min) + min) | 0;
+
+export const dateEventGetter = (calendarEvent: CalendarEvent) => {
+    const [startHour, startMinute] = calendarEvent.start.split(":")
+    return {
+        startTime: DateTime.fromObject({hour: startHour, minute: startMinute}),
+        endTime: DateTime.plus({minutes: calendarEvent.duration})
+    }
+}
+
+export const eventGroupCreator = (events: CalendarEvent[]) => {
+    let eventGroups = []
+    // const group = (calendarEvent: CalendarEvent, listCalendarEvent: CalendarEvent[], group?: CalendarEvent[]) => {
+    //
+    // }
+    for (let i = 0; i < events.length; i++) {
+        let currentEventDate = dateEventGetter(events[i])
+        let group = []
+        for (let j = i + 1; j < events.length; j++) {
+            let nextEventDate = dateEventGetter(events[j])
+            if ((currentEventDate.startTime <= nextEventDate.endTime) && (nextEventDate.startTime <= currentEventDate.endTime)) {
+                //Then the two dates overlaps
+                
+            }
+        }
+        // eventGroups.push()
+    }
+
+    return []
+}
