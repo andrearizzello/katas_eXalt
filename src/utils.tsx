@@ -1,3 +1,5 @@
+import {CalendarEvent} from "./interfaces";
+
 const {DateTime, Interval} = require("luxon");
 
 /**
@@ -36,3 +38,14 @@ export const dateSorter = (a: any, b: any) => {
  * @return {number} The random number
  */
 export const getRandomInInterval = (min: number, max: number) => (Math.random() * (max - min) + min) | 0;
+
+
+export const dateEventGetter = (calendarEvent: CalendarEvent) => {
+    const [startHour, startMinute] = calendarEvent.start.split(":")
+    let startTime = DateTime.fromObject({hour: startHour, minute: startMinute})
+    let endTime = startTime.plus({minutes: calendarEvent.duration})
+    return {
+        startTime,
+        endTime
+    }
+}

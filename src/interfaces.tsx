@@ -1,7 +1,9 @@
 export interface CalendarEvent {
     id: number,
     start: string,
-    duration: number
+    duration: number,
+    atRight?: CalendarEvent | null,
+    atLeft?: CalendarEvent | null
 }
 
 export interface CalendarProps {
