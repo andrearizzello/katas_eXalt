@@ -1,6 +1,6 @@
 import {CalendarProps} from "./interfaces";
 import {Event} from "./Components/Event";
-import {dateSorter, totalInterval} from "./utils";
+import {dateEventGetter, dateSorter, totalInterval} from "./utils";
 
 /**
  * divCalendar generates the style for the calendar.
@@ -24,6 +24,17 @@ const divCalendar = (startTime: string, endTime: string) => ({
  * @param {CalendarProps}
  */
 export const Calendar = ({events, startTime, endTime}: CalendarProps) => {
+    let eventsCopy = [...events]
+    let event
+    let eventDate
+    for (let i = 0; i < eventsCopy.length; i++) {
+        event = eventsCopy[i]
+        eventDate = dateEventGetter(event)
+        for (let j = 1; j < eventsCopy.length; j++) {
+
+        }
+    }
+
     return (
         <div style={divCalendar(startTime, endTime)}>
             {events.sort(dateSorter).map((event, index) =>

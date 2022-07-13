@@ -2,6 +2,8 @@ export interface CalendarEvent {
     id: number,
     start: string,
     duration: number
+    hasLeft?: CalendarEvent | undefined
+    hasRight?: CalendarEvent | undefined
 }
 
 export interface CalendarProps {
